@@ -1,0 +1,48 @@
+{% extends './layout.html' %}
+{% block content %}
+<div class='well'>
+  <form method='POST' action='/departments/{{ department.id}}/employees'>
+    <div class='form-group'>
+      <input class='form-control' placeholder='employee name' name='name' />
+    </div>
+    <button type='submit' class='btn btn-primary'>Create Employee</button>
+  </form>
+</div>
+
+{% if defaultDepartment.id === department.id %}
+<div class='well'>
+  This is the default department.
+</div>
+{% else %}
+  <form method='POST' action='/departments/{{department.id}}?_method=PUT'>
+    <button type='submit' class='btn btn-warning'>Make This the Default Department</button>
+  </form>
+{% endif %}
+<form action='/departments/{{department.id}}?_method=DELETE' method='POST'>
+  <button class='btn btn-danger'>Delete Department</button>
+</form>
+
+<ul class='nav nav-pills' style='margin-bottom:10px'>
+{% for _department in departments %}
+<li {% if department.id === _department.id %} class='active' {% endif %}>
+    <a href='/departments/{{_department.id}}'>
+      {{ _department.name }}
+    </a>
+  </li>
+{% endfor %}
+</ul>
+
+<ul class='list-group'>
+  {% for employee in department.users %}
+  <li class='list-group-item'>
+    {{ employee.name }}
+    <form method='POST' action='/departments/{{department.id}}/employees/{{employee.id}}?_method=DELETE'>
+      <button type='submit' class='btn btn-danger'>Delete</button>
+    </form>
+    <form method='POST' action='/departments/{{department.id}}/employees/{{employee.id}}?_method=PUT'>
+      <button type='submit' class='btn btn-primary'>Make Customer</button>
+    </form>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

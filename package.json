@@ -1,0 +1,27 @@
+{
+  "name": "acme_users_demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "DATABASE_URL=postgres://localhost/acme_users_demo_test nodemon ./node_modules/mocha/bin/mocha",
+    "start:dev": "DATABASE_URL=postgres://localhost/acme_users_demo nodemon server.js",
+    "sync": "SYNC=true DATABASE_URL=postgres://localhost/acme_users_demo node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.3",
+    "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.7",
+    "express": "^4.14.0",
+    "method-override": "^2.3.6",
+    "pg": "^6.1.0",
+    "sequelize": "^3.24.1",
+    "swig": "^1.4.2"
+  }
+}

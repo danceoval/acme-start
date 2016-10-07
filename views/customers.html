@@ -1,0 +1,25 @@
+{% extends './layout.html' %}
+{% block content %}
+<div class='well'>
+  <form action='/customers' method='POST'>
+    <div class='form-group'>
+      <input class='form-control' name='name' placeholder='customer name' />
+    </div>
+    <button class='btn btn-primary' type='submit'>Create Customer</button>
+  </form>
+</div>
+
+<ul class='list-group'>
+  {% for customer in customers %}
+  <li class='list-group-item'>
+    {{ customer.name }}
+    <form method='POST' action='/customers/{{customer.id}}?_method=DELETE'>
+      <button type='submit' class='btn btn-danger'>Delete Customer</button>
+    </form>
+    <form method='POST' action='/customers/{{customer.id}}?_method=PUT'>
+      <button type='submit' class='btn btn-primary'>Create Employee</button>
+    </form>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends './layout.html' %}
+{% block content %}
+<div class='well'>
+  <form method='POST' action='/departments'>
+    <div class='form-group'>
+      <input class='form-control' placeholder='department name' name='name' />
+    </div>
+    <button type='submit' class='btn btn-primary'>Create Department</button>
+  </form>
+</div>
+ <ul class='list-group'>
+      <li class='list-group-item'>
+        There are two models: User and Department
+      </li>
+      <li class='list-group-item list-group-item-success'>
+        Users and Departments
+      </li>
+      <li class='list-group-item'>
+        A user has a name. (and a department through association)
+      </li>
+      <li class='list-group-item'>
+        A department has a name and an isDefault property
+      </li>
+      <li class='list-group-item'>
+        A User belongs to a Department
+      </li>
+      <li class='list-group-item'>
+        There can be only one default department.
+      </li>
+      <li class='list-group-item'>
+        There must be one default department. This is a good place for a class method. Department.getDefault() can return the default department. If it doesn't exist, then it can create it.
+      </li>
+      <li class='list-group-item list-group-item-success'>
+        Customers
+      </li>
+      <li class='list-group-item'>
+        A User with with no department is a customer.
+      </li>
+      <li class='list-group-item'>
+        When making a customer an employee, they should be added to the default department.
+      </li>
+      <li class='list-group-item'>
+        When making an employee a customer, remove their department
+      </li>
+      <li class='list-group-item'>
+        Routes:
+        <pre>
+          GET /home - for the home page
+          GET /departments/:id - for a department page
+          POST /departments - creates a department
+          POST /departments/:id/employees - creates an employee
+          DELETE /departments/:departmentid/employees/:id - deletes an employee
+          PUT /department/:id - makes that department the default department
+
+          GET /customers - for the customers page
+          POST /customers - creates a customer
+          DELETE /customers/:id - deletes a customer
+
+          PUT /customers/:id - makes a customer an employee
+          PUT /departments/:departmentId/employees/:id - turns an employee into a customer
+
+        </pre>
+      </li>
+      <li class='list-group-item'>
+        Files:
+        <pre>
+          db/index.js
+
+          views/layout.html
+          views/index.html
+          views/departments.html
+          views/customers.html
+
+          app.js
+          server.js
+
+          routes/department.js 
+          routes/customers.js
+          
+        </pre>
+      </li>
+    </ul>
+
+{% endblock %}
